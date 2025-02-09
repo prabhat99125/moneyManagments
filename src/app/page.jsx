@@ -11,7 +11,7 @@ export default function Home() {
     console.log("cookies", cook);
 
     if (!cook) {
-      router.push("/login");
+      // router.push("/login");
     }
   }, [cook, router]);
 
