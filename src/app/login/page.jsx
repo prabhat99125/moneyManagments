@@ -14,8 +14,10 @@ function Ragistar() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onsubmit = (data) => {
     setLoading(true)
-    axios.post(`https://momey-managments.onrender.com/login`, data, 
-      { withCredentials: true,  })
+    axios.post(`https://momey-managments.onrender.com/login`, JSON.stringify(data), {
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true,
+    })
       .then((res) => {
         console.log(res);
 
