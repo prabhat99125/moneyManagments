@@ -14,7 +14,7 @@ function Ragistar() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onsubmit = (data) => {
     setLoading(true)
-    axios.post(`${process.env.NEXT_PUBLIC_servarURL}/login`, data, 
+    axios.post(`https://momey-managments.onrender.com/login`, data, 
       { withCredentials: true,  })
       .then((res) => {
         console.log(res);

@@ -15,7 +15,7 @@ function Ragistar() {
   const onsubmit = (data) => {
 
     setLoading(true);
-    axios.post(`${process.env.NEXT_PUBLIC_servarURL}/register`, data, { withCredentials: true })
+    axios.post(`https://momey-managments.onrender.com/register`, data, { withCredentials: true })
       .then((res) => {
         setRespons(res);
         router.push("/login");

@@ -18,7 +18,7 @@ export default function HomePage() {
         let isCreditors = true; // Flag to prevent state update if the component is unmounted
         async function fetchCreditors() {
             try {
-                const response = await fetch(`${process.env.NEXT_PUBLIC_servarURL}/creditors`, {
+                const response = await fetch(`https://momey-managments.onrender.com/creditors`, {
                     method: 'GET',
                     credentials: 'include', // Include cookies in the request
                 });
@@ -53,7 +53,7 @@ export default function HomePage() {
 
 
             try {
-                const response = await fetch(`${process.env.NEXT_PUBLIC_servarURL}/debtors`, {
+                const response = await fetch(`https://momey-managments.onrender.com/debtors`, {
                     method: 'GET',
                     credentials: 'include', // Include cookies in the request
                 });

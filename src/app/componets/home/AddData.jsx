@@ -18,7 +18,7 @@ export default function Modal() {
     };
     const onsubmit = (data) => {
         setLoading(true);
-        axios.post(`${process.env.NEXT_PUBLIC_servarURL}/chandla`, data, { withCredentials: true })
+        axios.post(`https://momey-managments.onrender.com/chandla`, data, { withCredentials: true })
             .then((res) => {
                 setStatus(res.status)
                 setTimeout(() => { setStatus(0) }, 2000)
