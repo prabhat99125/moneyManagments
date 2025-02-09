@@ -1,0 +1,32 @@
+.contenar {
+    height: 80vh;
+    min-height: 500px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ragiFrom {
+    -webkit-box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.91);
+    -moz-box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.91);
+    box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.91);
+    border-radius: 1rem;
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+}
+
+.heding {
+    font-size: 25px;
+    text-align: center;
+    margin: 5px 0px 10px 0px;
+}
+
+.btnControl {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

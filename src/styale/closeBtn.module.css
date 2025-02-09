@@ -1,0 +1,10 @@
+.fiMenu {
+    margin-left: 10px;
+    font-size: 25px;
+}
+
+@media (min-width: 500px) {
+    .fiMenu {
+        display: none;
+    }
+}

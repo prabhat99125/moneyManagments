@@ -1,0 +1,39 @@
+.stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.stat {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 155px;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    background: #272d34;
+    color: rgb(161, 161, 161);
+    /* min-width: 100px; */
+    /* width: 186px; */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.statTitle {
+    font-size: 14px;
+    color: #3a86ff;
+}
+
+.statValue {
+    font-size: 24px;
+    font-weight: bold;
+    color: #f9f9f9;
+}
+
+.statDesc {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.manageLeyout {
+    height: auto;
+    
+}
