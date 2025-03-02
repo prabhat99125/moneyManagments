@@ -12,6 +12,8 @@
 
 .navValue {
     margin-right: 15px;
+    list-style: none;
+
 }
 
 .value {
@@ -37,6 +39,7 @@
     .navValue {
         display: none;
     }
+
     .logo {
         margin-right: 15px;
     }

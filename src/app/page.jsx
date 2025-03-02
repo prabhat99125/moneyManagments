@@ -8,7 +8,6 @@ export default function Home() {
   const router = useRouter();
   const cook = cookies.get("authorized");
   useEffect(() => {
-    console.log("cookies", cook);
 
     if (!cook) {
       // router.push("/login");

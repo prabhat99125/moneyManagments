@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import style from '@/styale/closeBtn.module.css'
+import style from '../../../styale/closeBtn.module.css'
 import { FiMenu } from "react-icons/fi";
 import { Flamenco } from 'next/font/google';
 import Drawer from '../Drawer';

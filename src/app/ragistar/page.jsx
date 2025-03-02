@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react'
-import style from "@/styale/ragi.module.css"
+import style from "../../styale/ragi.module.css"
 import Link from 'next/link'
 import { useForm } from 'react-hook-form';
 import axios from "axios";
@@ -13,12 +13,15 @@ function Ragistar() {
   const password = watch("password");
   const router = useRouter();
   const onsubmit = (data) => {
+    console.log(data);
 
     setLoading(true);
-    axios.post(`https://momey-managments.onrender.com/register`, data, { withCredentials: true })
+    axios.post(`/api/signup`, data, { withCredentials: true })
       .then((res) => {
         setRespons(res);
-        router.push("/login");
+        console.log(res);
+
+        // router.push("/login");
         setLoading(false);
 
       }).catch((e) => {
@@ -45,8 +48,8 @@ function Ragistar() {
               <path
                 d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
             </svg>
-            <input type="text" className="grow" name='userName' placeholder="Username"
-              {...register("userName", { required: "Username is required", minLength: { value: 4, message: "minimum 3 characters" }, maxLength: { value: 10, message: "maximum 10 character" } })} />
+            <input type="text" className="grow" name='username' placeholder="Username"
+              {...register("username", { required: "Username is required", minLength: { value: 4, message: "minimum 3 characters" }, maxLength: { value: 10, message: "maximum 10 character" } })} />
           </label>
           {errors.userName && <p className='text-red-400 -mt-1 text-[14px]'>{errors.userName.message}</p>}
           <label className="input input-bordered flex items-center gap-2">

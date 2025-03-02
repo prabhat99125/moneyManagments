@@ -1,5 +1,5 @@
 import React from 'react'
-import style from "@/styale/drawer.module.css"
+import style from "../../styale/drawer.module.css"
 import Link from 'next/link'
 function Drawer() {
     return (

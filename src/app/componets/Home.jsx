@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import styles from '@/app/page.module.css';
+import styles from "../page.module.css"
 import Modal from './home/AddData';
 import { MdEdit } from "react-icons/md";
 
@@ -18,12 +18,10 @@ export default function HomePage() {
         let isCreditors = true; // Flag to prevent state update if the component is unmounted
         async function fetchCreditors() {
             try {
-                const response = await fetch(`https://momey-managments.onrender.com/creditors`, {
+                const response = await fetch(`/api/creditor/get`, {
                     method: 'GET',
                     credentials: 'include', // Include cookies in the request
                 });
-                console.log(response);
-
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -33,8 +31,8 @@ export default function HomePage() {
                 if (isCreditors) {
                     setCreditorsData(data);
                     setLoading(false);
-                    data.user.map((val, idx) => {
-                        setCreditors((prw) => prw + Number(val.Payment))
+                    data.map((val, idx) => {
+                        setCreditors((prw) => prw + Number(val.amount))
                     })
                 }
             } catch (err) {
@@ -53,22 +51,22 @@ export default function HomePage() {
 
 
             try {
-                const response = await fetch(`https://momey-managments.onrender.com/debtors`, {
+                const response = await fetch(`/api/debtor/get`, {
                     method: 'GET',
                     credentials: 'include', // Include cookies in the request
                 });
-                console.log(response);
 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const data = await response.json();
+                console.log(data);
 
                 if (isDeptors) {
                     setDeptorsData(data);
                     setLoading(false);
-                    data.user.map((val, idx) => {
-                        setDeptors((prw) => prw + Number(val.Payment))
+                    data.user((val, idx) => {
+                        setDeptors((prw) => prw + Number(val.amount))
                     })
                 }
             } catch (err) {
@@ -82,7 +80,7 @@ export default function HomePage() {
         fetchDeptors();
     }, []);
     if (loading) return <div className="h-full w-full flex justify-center items-center"><span className="loading loading-spinner text-neutral"></span></div>;
-    if (error) return <div>Error loading data</div>;
+    // if (error) return <div>Error loading data</div>;
 
     return (
         <div className={`${styles.manageLeyout} mr-2 ml-2`}>
@@ -145,13 +143,13 @@ export default function HomePage() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {Array.isArray(creditorsData.user) && creditorsData.user.length > 0 ? (
-                                    creditorsData.user.map((val, idx) => (
+                                {Array.isArray(creditorsData) && creditorsData.length > 0 ? (
+                                    creditorsData.map((val, idx) => (
                                         <tr key={idx}>
                                             <th>{idx + 1}</th>
-                                            <td>{val.Payment}</td>
-                                            <td>{val.Name}</td>
-                                            <td>{val.Village}</td>
+                                            <td>{val.amount}</td>
+                                            <td>{val.name}</td>
+                                            <td>{val.village}</td>
                                             <td><MdEdit /></td>
                                         </tr>
                                     ))
@@ -186,13 +184,13 @@ export default function HomePage() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {Array.isArray(debtorsData.user) && debtorsData.user.length > 0 ? (
-                                    debtorsData.user.map((val, idx) => (
+                                {Array.isArray(debtorsData) && debtorsData.length > 0 ? (
+                                    debtorsData.map((val, idx) => (
                                         <tr key={idx}>
                                             <th>{idx + 1}</th>
-                                            <td>{val.Payment}</td>
-                                            <td>{val.Name}</td>
-                                            <td>{val.Village}</td>
+                                            <td>{val.amount}</td>
+                                            <td>{val.name}</td>
+                                            <td>{val.village}</td>
                                         </tr>
                                     ))
                                 ) : (

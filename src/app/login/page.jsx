@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react'
-import style from "@/styale/ragi.module.css"
+import style from "../../styale/ragi.module.css"
 import Link from 'next/link'
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
@@ -14,7 +14,7 @@ function Ragistar() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onsubmit = (data) => {
     setLoading(true)
-    axios.post(`https://momey-managments.onrender.com/login`, JSON.stringify(data), {
+    axios.post(`./api/login`, data, {
       headers: { "Content-Type": "application/json" },
       withCredentials: true,
     })

@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import style from "@/styale/header.module.css"
+import style from "../../styale/header.module.css"
 import CloseBtn from "./CloseBtn/CloseBtn";
 export const Navbar = () => {
 

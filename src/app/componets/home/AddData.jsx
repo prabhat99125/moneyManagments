@@ -1,6 +1,6 @@
 "use client"
 import { useRef, useState } from "react";
-import style from "@/styale/addData.module.css"
+import style from "../../../styale/addData.module.css"
 import { MdOutlineAdd } from "react-icons/md";
 import { useForm } from 'react-hook-form';
 import axios from "axios";
