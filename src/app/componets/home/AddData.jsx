@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import axios from "axios";
 
 export default function Modal() {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
     const [loading, setLoading] = useState(false);
     const [status, setStatus] = useState(0);
     const modalRef = useRef(null);
@@ -17,11 +17,16 @@ export default function Modal() {
         }
     };
     const onsubmit = (data) => {
+        console.log(data);
+
         setLoading(true);
-        axios.post(`https://momey-managments.onrender.com/chandla`, data, { withCredentials: true })
+        axios.post(`/api/${data.sundry === 'debtors' ? 'debtor' : 'creditor'}`, data)
             .then((res) => {
+                console.log(res);
+
                 setStatus(res.status)
-                setTimeout(() => { setStatus(0) }, 2000)
+                setTimeout(() => { setStatus(0); reset(); }, 2000);
+
             })
             .catch((e) => { })
             .finally(() => setLoading(false))
@@ -40,22 +45,22 @@ export default function Modal() {
                             <input
                                 type="number"
                                 placeholder="Payment"
-                                name="Payment"
+                                name="amount"
                                 className="input input-bordered input-info w-full max-w-xs"
-                                {...register("Payment")} />
+                                {...register("amount")} />
                             <input
                                 type="text"
                                 placeholder="Name"
-                                name="Name"
+                                name="name"
                                 className="input input-bordered input-success w-full max-w-xs"
-                                {...register("Name")} />
+                                {...register("name")} />
                             <input
                                 type="text"
                                 placeholder="Village"
-                                name="Name"
+                                name="village"
                                 className="input input-bordere
                             d input-primary w-full max-w-xs"
-                                {...register("Village")} />
+                                {...register("village")} />
 
                             <input
                                 type="date"

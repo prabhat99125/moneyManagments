@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import styles from "../page.module.css"
 import Modal from './home/AddData';
 import { MdEdit } from "react-icons/md";
+import CreditDebitTabale from "./home/creditDebitTable";
 
 export default function HomePage() {
     // State to hold the creditors data, loading status, and error messages
@@ -13,7 +14,9 @@ export default function HomePage() {
     const [error, setError] = useState(null);
     const [creditor, setCreditors] = useState(0);
     const [deptors, setDeptors] = useState(0);
-
+    function toTitleCase(str) {
+        return str.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    }
     useEffect(() => {
         let isCreditors = true; // Flag to prevent state update if the component is unmounted
         async function fetchCreditors() {
@@ -28,13 +31,15 @@ export default function HomePage() {
                 const data = await response.json();
                 console.log(data);
 
-                if (isCreditors) {
-                    setCreditorsData(data);
-                    setLoading(false);
-                    data.map((val, idx) => {
-                        setCreditors((prw) => prw + Number(val.amount))
-                    })
-                }
+                // if (isCreditors) {
+
+                setCreditorsData(data);
+                setLoading(false);
+                data.map((val, idx) => {
+
+                    setCreditors((prw) => prw + Number(val.amount))
+                })
+                // }
             } catch (err) {
                 console.log(err);
 
@@ -65,7 +70,7 @@ export default function HomePage() {
                 if (isDeptors) {
                     setDeptorsData(data);
                     setLoading(false);
-                    data.user((val, idx) => {
+                    data.map((val, idx) => {
                         setDeptors((prw) => prw + Number(val.amount))
                     })
                 }
@@ -119,6 +124,7 @@ export default function HomePage() {
             </div>
             <div className="overflow-x-auto">
                 <Modal />
+                <CreditDebitTabale />
                 <div role="tablist" className="tabs tabs-lifted">
                     <input
                         type="radio"
@@ -143,16 +149,18 @@ export default function HomePage() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {Array.isArray(creditorsData) && creditorsData.length > 0 ? (
-                                    creditorsData.map((val, idx) => (
-                                        <tr key={idx}>
+                                {creditorsData.length > 0 ? (
+                                    creditorsData.map((val, idx) => {
+                                        console.log(val.amount);
+
+                                        return (<tr key={idx}>
                                             <th>{idx + 1}</th>
                                             <td>{val.amount}</td>
-                                            <td>{val.name}</td>
-                                            <td>{val.village}</td>
+                                            <td>{toTitleCase(val.name)}</td>
+                                            <td>{toTitleCase(val.village)}</td>
                                             <td><MdEdit /></td>
-                                        </tr>
-                                    ))
+                                        </tr>)
+                                    })
                                 ) : (
                                     <tr>
                                         <td colSpan="4">No creditor data available.</td>
@@ -185,17 +193,19 @@ export default function HomePage() {
                             </thead>
                             <tbody>
                                 {Array.isArray(debtorsData) && debtorsData.length > 0 ? (
-                                    debtorsData.map((val, idx) => (
-                                        <tr key={idx}>
-                                            <th>{idx + 1}</th>
-                                            <td>{val.amount}</td>
-                                            <td>{val.name}</td>
-                                            <td>{val.village}</td>
-                                        </tr>
-                                    ))
+                                    debtorsData.map((val, idx) => {
+                                        return (
+                                            <tr key={idx}>
+                                                <th>{idx + 1}</th>
+                                                <td>{val.amount}</td>
+                                                <td>{val.name}</td>
+                                                <td>{val.village}</td>
+                                            </tr>
+                                        )
+                                    })
                                 ) : (
                                     <tr>
-                                        <td colSpan="4">No creditor data available.</td>
+                                        <td colSpan="4">No Debtors data available.</td>
                                     </tr>
                                 )}
 
